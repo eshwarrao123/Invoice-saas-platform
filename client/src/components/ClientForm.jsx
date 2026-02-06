@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaSave, FaArrowLeft } from 'react-icons/fa';
+import API from "../api";
 
 const ClientForm = () => {
     const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const ClientForm = () => {
 
     const fetchClient = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/clients/${id}`);
+            const response = await API.get(`/api/clients/${id}`);
             setFormData(response.data);
         } catch (error) {
             console.error('Error fetching client:', error);
@@ -37,9 +38,9 @@ const ClientForm = () => {
         e.preventDefault();
         try {
             if (isEditMode) {
-                await axios.put(`http://localhost:5000/api/clients/${id}`, formData);
+                await API.put(`/api/clients/${id}`, formData);
             } else {
-                await axios.post('http://localhost:5000/api/clients', formData);
+                await API.post(`/api/clients`, formData);
             }
             navigate('/clients');
         } catch (error) {

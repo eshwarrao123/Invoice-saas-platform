@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API from "../api";
 
 const AuthContext = createContext();
 
@@ -30,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         }
 
         try {
-            const res = await axios.get('http://localhost:5000/api/auth/user');
+            const res = await API.get('/api/auth/user');
             setUser(res.data);
         } catch (err) {
             console.error('Error loading user:', err);
@@ -45,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (formData) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+            const res = await API.post('/api/auth/register', formData);
             localStorage.setItem('token', res.data.token);
             setToken(res.data.token);
             await loadUser();
@@ -58,7 +59,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (formData) => {
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+            const res = await API.post('/api/auth/login', formData);
             localStorage.setItem('token', res.data.token);
             setToken(res.data.token);
             await loadUser();

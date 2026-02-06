@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { FaCheck } from 'react-icons/fa';
+import API from "../api";
 
 const Subscription = () => {
     const { user } = useAuth();
@@ -10,7 +11,7 @@ const Subscription = () => {
     const handleUpgrade = async () => {
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/subscription/create-checkout-session');
+            const res = await API.post('/api/subscription/create-checkout-session');
             window.location.href = res.data.url;
         } catch (err) {
             console.error('Upgrade failed:', err);

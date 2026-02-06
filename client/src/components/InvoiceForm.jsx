@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaPlus, FaTrash, FaSave, FaArrowLeft, FaCalendarAlt } from 'react-icons/fa';
+import API from "../api";
 
 const InvoiceForm = () => {
     const navigate = useNavigate();
@@ -41,7 +42,7 @@ const InvoiceForm = () => {
 
     const fetchClients = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/clients');
+            const res = await API.get('/api/clients');
             setClients(res.data);
         } catch (err) {
             console.error('Error fetching clients:', err);
@@ -97,7 +98,7 @@ const InvoiceForm = () => {
                 ...invoiceData,
                 ...totals
             };
-            await axios.post('http://localhost:5000/api/invoices', payload);
+            await API.post('/api/invoices', payload);
             navigate('/invoices');
         } catch (error) {
             console.error('Error creating invoice:', error);
@@ -105,7 +106,7 @@ const InvoiceForm = () => {
             setError(msg);
         }
     }
-        ;
+
 
     return (
         <div className="max-w-4xl mx-auto">

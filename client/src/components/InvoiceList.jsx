@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaPlus, FaEye, FaTrash, FaFilePdf, FaPaperPlane, FaCommentDots, FaCreditCard, FaSearch, FaFilter } from 'react-icons/fa';
 import { generateInvoicePDF } from '../utils/pdfGenerator';
+import API from "../api";
 
 const InvoiceList = () => {
     const [invoices, setInvoices] = useState([]);
@@ -15,7 +16,7 @@ const InvoiceList = () => {
 
     const fetchInvoices = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/invoices');
+            const response = await API.get('/api/invoices');
             setInvoices(response.data);
             setLoading(false);
         } catch (error) {
@@ -27,7 +28,7 @@ const InvoiceList = () => {
     const deleteInvoice = async (id) => {
         if (window.confirm('Are you sure you want to delete this invoice?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/invoices/${id}`);
+                await API.delete(`/api/invoices/${id}`);
                 fetchInvoices();
             } catch (error) {
                 console.error('Error deleting invoice:', error);
@@ -38,7 +39,7 @@ const InvoiceList = () => {
     const sendEmail = async (id) => {
         if (window.confirm('Send this invoice to the client?')) {
             try {
-                await axios.post(`http://localhost:5000/api/invoices/${id}/send`);
+                await API.post(`/api/invoices/${id}/send`);
                 alert('Invoice sent successfully!');
                 fetchInvoices();
             } catch (error) {
@@ -51,7 +52,7 @@ const InvoiceList = () => {
     const sendSMS = async (id) => {
         if (window.confirm('Send SMS reminder?')) {
             try {
-                await axios.post(`http://localhost:5000/api/invoices/${id}/send-sms`);
+                await API.post(`/api/invoices/${id}/send-sms`);
                 alert('SMS sent successfully!');
             } catch (error) {
                 console.error('Error sending SMS:', error);
@@ -62,7 +63,7 @@ const InvoiceList = () => {
 
     const handlePayment = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/invoices/${id}/pay`);
+            const response = await API.post(`/api/invoices/${id}/pay`);
             if (response.data.url) {
                 window.location.href = response.data.url;
             } else {

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaPlus, FaEdit, FaTrash, FaUserTie, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import API from "../api";
+
 
 const ClientList = () => {
     const [clients, setClients] = useState([]);
@@ -13,7 +15,7 @@ const ClientList = () => {
 
     const fetchClients = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/clients');
+            const response = await API.get('/api/clients');
             setClients(response.data);
             setLoading(false);
         } catch (error) {
@@ -25,7 +27,7 @@ const ClientList = () => {
     const deleteClient = async (id) => {
         if (window.confirm('Are you sure you want to delete this client?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/clients/${id}`);
+                await API.delete(`/api/clients/${id}`);
                 fetchClients();
             } catch (error) {
                 console.error('Error deleting client:', error);
