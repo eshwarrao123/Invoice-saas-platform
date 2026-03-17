@@ -4,8 +4,7 @@ import autoTable from 'jspdf-autotable';
 export const generateInvoicePDF = (invoice) => {
     const doc = new jsPDF();
 
-    // Color constants
-    const primaryColor = [41, 128, 185]; // A nice blue
+    const primaryColor = [41, 128, 185];
     const grayColor = [128, 128, 128];
 
     // Header
@@ -14,7 +13,7 @@ export const generateInvoicePDF = (invoice) => {
     doc.setTextColor(...primaryColor);
     doc.text('INVOICE', 14, 22);
 
-    // Company Info (Your Freelance Info)
+    // Company Info
     doc.setFontSize(10);
     doc.setTextColor(...grayColor);
     doc.text('My Freelance Business', 14, 30);
@@ -63,7 +62,6 @@ export const generateInvoicePDF = (invoice) => {
         });
     }
 
-    // Correct usage for jspdf-autotable in modular environments
     autoTable(doc, {
         startY: yPos + 20,
         head: [tableColumn],
@@ -80,7 +78,6 @@ export const generateInvoicePDF = (invoice) => {
     const rightX = pageWidth - rightMargin;
 
     doc.setFontSize(10);
-    // Ensure numbers are checked before toFixed
     const subTotal = invoice.subTotal || 0;
     const taxRate = invoice.taxRate || 0;
     const taxAmount = invoice.taxAmount || 0;
@@ -89,7 +86,7 @@ export const generateInvoicePDF = (invoice) => {
     doc.text(`Subtotal: ${invoice.currency} ${subTotal.toFixed(2)}`, rightX, finalY, { align: 'right' });
     doc.text(`Tax (${taxRate}%): ${invoice.currency} ${taxAmount.toFixed(2)}`, rightX, finalY + 6, { align: 'right' });
 
-    doc.setFontSize(14); // Bold total
+    doc.setFontSize(14);
     doc.setTextColor(...primaryColor);
     doc.text(`Total: ${invoice.currency} ${total.toFixed(2)}`, rightX, finalY + 15, { align: 'right' });
 
