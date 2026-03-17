@@ -60,7 +60,7 @@ const ClientList = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {clients.map((client) => (
                     <div key={client._id} className="bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-all p-6 relative group">
-                        {/* Actions Overlay */}
+                       
                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
                             <Link to={`/clients/edit/${client._id}`} className="p-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-blue-50 hover:text-blue-600">
                                 <FaEdit />
