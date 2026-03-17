@@ -11,7 +11,7 @@ const InvoiceForm = () => {
     // Form State
     const [invoiceData, setInvoiceData] = useState({
         client: '',
-        invoiceNumber: `INV-${Date.now()}`, // Quick generation
+        invoiceNumber: `INV-${Date.now()}`,
         dueDate: '',
         currency: 'USD',
         status: 'Draft',
@@ -21,10 +21,9 @@ const InvoiceForm = () => {
         ]
     });
 
-    // Totals State
     const [totals, setTotals] = useState({
         subTotal: 0,
-        taxRate: 0, // Percentage
+        taxRate: 0,
         taxAmount: 0,
         total: 0
     });
@@ -35,7 +34,6 @@ const InvoiceForm = () => {
         fetchClients();
     }, []);
 
-    // Recalculate totals whenever items or tax rate changes
     useEffect(() => {
         calculateTotals();
     }, [invoiceData.items, totals.taxRate]);
@@ -71,7 +69,6 @@ const InvoiceForm = () => {
         setInvoiceData({ ...invoiceData, [name]: value });
     };
 
-    // Item Handlers
     const handleItemChange = (index, e) => {
         const { name, value } = e.target;
         const newItems = [...invoiceData.items];
