@@ -21,7 +21,7 @@ const invoiceSchema = new mongoose.Schema({
             description: String,
             quantity: Number,
             rate: Number,
-            section: String // Optional: for section like 'Service', 'Product' etc.
+            section: String
         }
     ],
     subTotal: {
@@ -67,9 +67,6 @@ const invoiceSchema = new mongoose.Schema({
         default: Date.now
     }
 });
-
-// Pre-save hook to calculate totals if not provided?
-// For now, we'll assume frontend sends calculated totals or we calc in route.
 
 const Invoice = mongoose.model('Invoice', invoiceSchema);
 
