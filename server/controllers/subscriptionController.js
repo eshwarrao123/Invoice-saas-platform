@@ -5,7 +5,6 @@ dotenv.config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Create Checkout Session for Subscription
 export const createCheckoutSession = async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
@@ -47,15 +46,11 @@ export const createCheckoutSession = async (req, res) => {
     }
 };
 
-// Webhook for Stripe Events
 export const webhook = async (req, res) => {
     const sig = req.headers['stripe-signature'];
     let event;
 
     try {
-        // In a real app, you must verify the signature using process.env.STRIPE_WEBHOOK_SECRET
-        // For development/MVP without public URL or CLI, we might skip signature verification or need CLI
-        // Here we assume raw body parsing is set up in server.js
         event = req.body;
     } catch (err) {
         console.error(`Webhook Error: ${err.message}`);
