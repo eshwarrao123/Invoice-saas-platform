@@ -12,7 +12,7 @@ This project allows users to create, manage, send, and collect payments for invo
 
 ---
 
-## 🧠 Project Overview
+## Project Overview
 
 This application simulates a production-ready SaaS invoicing platform where users can:
 
@@ -28,7 +28,7 @@ The system includes production-level deployment, API security, subscription logi
 
 ---
 
-## 🏗 Architecture
+##  Architecture
 
 User → Vercel (React Frontend)  
   ↓  
@@ -79,7 +79,7 @@ Stripe | SendGrid | Twilio
 
 ---
 
-## 💳 Subscription Model
+##  Subscription Model
 
 ### Free Plan
 - Limited to 10 invoices per day
@@ -100,7 +100,7 @@ Stripe | SendGrid | Twilio
 
 ---
 
-## 📦 API Endpoints (Sample)
+##  API Endpoints (Sample)
 
 ### Authentication
 - `POST /api/auth/register`
@@ -127,7 +127,7 @@ Stripe | SendGrid | Twilio
 
 ---
 
-## 🧪 Running Locally
+##  Running Locally
 
 
 ```bash
