@@ -1,14 +1,14 @@
-# 📄 Invoice SaaS Platform
+#  Invoice SaaS Platform
 
 A full-stack SaaS-based Invoice Management and Payment Reminder application built using the MERN stack.  
 This project allows users to create, manage, send, and collect payments for invoices with subscription-based feature control.
 
 ---
 
-## 🚀 Live Demo
+##  Live Demo
 
-- 🌐 Frontend (Vercel): https://invoice-saas-platform.vercel.app  
-- 🔗 Backend (Render): https://invoice-api-lwvw.onrender.com  
+-  Frontend (Vercel): https://invoice-saas-platform.vercel.app  
+-  Backend (Render): https://invoice-api-lwvw.onrender.com  
 
 ---
 
@@ -40,7 +40,7 @@ Stripe | SendGrid | Twilio
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React (Vite)
@@ -68,7 +68,7 @@ Stripe | SendGrid | Twilio
 
 ---
 
-## 🔐 Authentication & Security
+##  Authentication & Security
 
 - JWT-based authentication
 - Password hashing using bcrypt
@@ -91,7 +91,7 @@ Stripe | SendGrid | Twilio
 
 ---
 
-## 📧 Email & SMS Features
+##  Email & SMS Features
 
 - Send invoice emails using SendGrid
 - Plain text + HTML email formatting
